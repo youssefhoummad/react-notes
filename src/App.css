@@ -1,0 +1,322 @@
+
+/* @import url("https://use.typekit.net/rgv3ljt.css"); */
+
+html,body {
+  font-size: 14px;
+  line-height: 1.5;
+  height: 100%;
+  background-color: #fff;
+  margin: 0;
+  overflow: hidden;
+}
+
+*:not(i){
+  font-family: ibm-plex-arabic, sans-serif !important;
+}
+
+
+:root {
+  --bg-gray:#F9F9F9;
+  --primary:#FF5C43;
+  --bg-primary:#ffebe8;
+  /* --primary:#1e9ada;
+  --bg-primary:#ECF6FB; */
+  /* --primary:#D56AA0;
+  --bg-primary:#faedf4; */
+}
+
+
+.App{
+  display: flex;
+  flex-direction: row;
+  overflow: hidden;
+  /* position: relative; */
+}
+
+.App > .delete_note{
+  position: absolute;
+  left: 20px;
+  top: 8px;
+  height: 34px;
+  width: 80px;
+  border-radius: 4px;
+  background-color:#dc3545; 
+  color: white;
+  font-weight: bolder;
+  border: 1px solid transparent;
+  border-color: #dc3545;
+  z-index: 20;
+}
+
+.App > .delete_note:hover{
+  background-color: #bb2d3b;
+  border-color: #b02a37;
+}
+
+.App > .delete_note:focus{
+  box-shadow: 0 0 0 0.1rem rgba(225,83,97,.5);
+  outline: 0;
+}
+
+a{
+  text-decoration: none;
+  color: inherit;
+}
+
+.title{
+  margin-right: 1rem;
+  margin-left: 1rem;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  color: var(--primary);
+}
+
+.title .new-item{
+  cursor: pointer;
+  font-size: 1.5rem;
+  color: gray;
+}
+
+.title .new-item:hover{
+  color: var(--primary);
+}
+
+.App aside.folders{
+  display: flex;
+  flex-direction: column;
+  flex: 0.2;
+  background-color: var(--bg-gray);
+  border-left: 1px solid #DEDEDE;
+  min-height: 100vh;
+  max-height: 100vh;
+  overflow-x: hidden;
+  overflow-y: hidden;
+  transition: flex 1000ms ease;
+  box-shadow: inset 18px 0px 15px 0px rgba(0,0,0,0.05);
+}
+
+
+.App .folders.collapsed{
+  max-width: 0;
+  transition: flex 1000ms ease;
+}
+
+.App aside.notes{
+  display: flex;
+  flex-direction: column;
+  flex:0.25;
+  border-left: 1px solid #DEDEDE;
+  min-height: 100vh;
+  max-height: 100vh;
+  transition: none;
+  overflow-x: hidden;
+  overflow-y:auto;
+}
+
+
+.App aside::-webkit-scrollbar {
+  display: none;
+}
+
+.App .folders .folders-pan{
+  display: flex;
+  flex-direction: column;
+}
+
+
+
+
+.App .folders .folders-pan .item{
+  display: flex;
+  padding: 10px 20px 10px 0;
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: gray;
+  border-top: 1px solid #F9F9F9;
+  border-bottom: 1px solid #F9F9F9;
+}
+
+.App .folders .folders-pan .item .icon{
+  padding-left: 20px;
+  font-size: 1.4rem;
+  color:inherit;
+}
+
+.App .folders .folders-pan .item.active {
+  background-color:var(--bg-primary);
+  color: var(--primary);
+}
+.App .folders .folders-pan .item:hover {
+  background-color:var(--bg-primary);
+  color: var(--primary);
+  border-top: 1px solid var(--bg-gray);
+  border-bottom: 1px solid var(--bg-gray);
+  opacity: 0.6;
+}
+
+
+.App .notes .notes-pan{
+  display: flex;
+  flex-direction: column;
+}
+
+.App .notes .notes-pan .item{
+  padding: 2rem;
+  border-right: 4px solid var(--primary);
+  border-top: 1px solid white;
+  border-bottom: 1px solid white;
+}
+
+.App .notes .notes-pan .item.active {
+  background-color:var(--bg-primary);
+  /* color: var(--color3); */
+}
+.App .notes .notes-pan .item:hover {
+  background-color:var(--bg-primary);
+  /* color: var(--color3); */
+  opacity: 0.6;
+  border-top: 1px solid white;
+  border-bottom: 1px solid white;
+}
+
+.App .notes .notes-pan .item .note-snippet{
+  font-weight: 200;
+  font-size: 0.9rem;
+}
+.App section.editor{
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.App section.editor .toolbar{
+  display: flex;
+  flex-direction: row;
+  margin: 1rem;
+  justify-content: space-around;
+  margin-bottom: 10px;
+}
+
+.App section.editor .toolbar .group{
+  border: 1px solid rgb(230, 228, 228);
+  border-radius: 5px;
+  padding-left: 3px;
+  padding-right: 3px;
+  background-image: linear-gradient(#F8F8F8, #F1F1F1);
+}
+
+.App section.editor .toolbar a{
+  color: #7e7b7b;
+  font-weight: bolder;
+  border: none;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+.App section.editor .toolbar a:hover{
+  color: var(--primary);
+}
+.App section.editor .editor-pan{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  box-shadow: inset 0px 23px 16px -16px rgba(0,0,0,0.08);
+  /* padding:1rem 0; */
+  font-size: 1.25rem;
+  font-weight: 300;
+}
+
+input.renamed-input{
+  width: 80%;
+  border: none;
+  height: inherit;
+  margin: 0;
+  padding: 0;
+  outline: none;
+  background-color: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  font-style: inherit;
+  color: inherit;
+}
+
+
+.toolbar-pan{
+  border: 1px solid rgb(230, 228, 228);
+  border-radius: 5px;
+  margin-left: 15px;
+  /* padding-left: 3px; */
+  /* padding-right: 3px; */
+  /* background-image: linear-gradient(#F8F8F8, #F1F1F1); */
+  /* background-color: white; */
+}
+.toolbar-pan button{
+  /* color: #7e7b7b; */
+  font-weight: bolder;
+  border: none;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+.sun-editor .se-toolbar{
+  background-color: inherit !important;
+  box-shadow: 0px 23px 16px -16px rgba(0,0,0,0.08);
+  margin-bottom: 1rem;
+ }
+
+/* .se-resizing-bar{
+  display: none !important;
+} */
+
+
+/* .sun-editor .se-menu-list, .sun-editor .se-menu-list li{
+  float: right !important;
+} */
+
+/* .sun-editor-editable blockquote{
+  border-width: 0 5px 0 0;
+  padding: 0 20px 0 5px;
+} */
+
+.sun-editor .se-svg:hover, .sun-editor button:hover>svg{
+  color: white;
+}
+
+
+.sun-editor .se-toolbar-separator-vertical{
+  margin: 10px;
+}
+
+/* 
+.sun-editor .se-btn-select .txt{
+  text-align: right;
+} */
+
+.sun-editor .se-btn-select.se-btn-tool-format {
+  width: 130px;
+}
+
+.se-btn-list[data-value="h6"]{
+display: none;
+}
+
+
+.se-btn:enabled:hover, .sun-editor .se-btn:enabled:hover {
+  background-color:var(--primary);
+  border-color:var(--primary);
+  outline: 0 none;
+}
+
+.sun-editor .se-btn:enabled.active{
+  color: var(--primary);
+}
+
+.sun-editor .se-list-inner .se-list-basic li button.active {
+  background-color:var(--bg-primary);
+  border-color:var(--primary);
+}
+.sun-editor .se-list-inner .se-list-basic li button.active:hover {
+  background-color:var(--primary);
+  border-color:var(--primary);
+}
