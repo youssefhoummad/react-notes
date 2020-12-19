@@ -1,2 +1,2 @@
 # react-notes
-notes app
+https://react-notes-zeta.vercel.app/
