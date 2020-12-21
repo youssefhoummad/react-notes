@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import ListFolders from './components/listFolders';
 import ListNotes from './components/listNotes';
 import Editor from './components/Editor';
@@ -9,19 +9,12 @@ import './App.css';
 
 const App = () => {
 
-  const [{menuCollapsed}, dispatch] = useStateValue();
-
-  const handleDeleteNote = () => {
-    dispatch({
-      type: "DELETE_NOTE",
-      payload:null
-    })
-  }
+  const [{menuCollapsed}, ] = useStateValue();
 
 
   return (
     <div className="App">
-      <button onClick={handleDeleteNote} className="delete_note">Delete</button>
+      {/* <button onClick={handleDeleteNote} className="delete_note">Delete</button> */}
         <React.Fragment>
           <aside className={"folders " + menuCollapsed}> 
               <ListFolders />
@@ -30,11 +23,14 @@ const App = () => {
               <ListNotes />
           </aside>
           <section className="editor">
-              <Editor/>
+              <Editor />
           </section>
         </React.Fragment>
     </div>
   );
 }
+
+
+
 
 export default App;

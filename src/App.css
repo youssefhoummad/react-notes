@@ -30,33 +30,13 @@ html,body {
   display: flex;
   flex-direction: row;
   overflow: hidden;
-  /* position: relative; */
-}
-
-.App > .delete_note{
   position: absolute;
-  left: 20px;
-  top: 8px;
-  height: 34px;
-  width: 80px;
-  border-radius: 4px;
-  background-color:#dc3545; 
-  color: white;
-  font-weight: bolder;
-  border: 1px solid transparent;
-  border-color: #dc3545;
-  z-index: 20;
+  top: 0;
+  left: 0;
+  width: 100%;
 }
 
-.App > .delete_note:hover{
-  background-color: #bb2d3b;
-  border-color: #b02a37;
-}
 
-.App > .delete_note:focus{
-  box-shadow: 0 0 0 0.1rem rgba(225,83,97,.5);
-  outline: 0;
-}
 
 a{
   text-decoration: none;
@@ -246,10 +226,6 @@ input.renamed-input{
   border: 1px solid rgb(230, 228, 228);
   border-radius: 5px;
   margin-left: 15px;
-  /* padding-left: 3px; */
-  /* padding-right: 3px; */
-  /* background-image: linear-gradient(#F8F8F8, #F1F1F1); */
-  /* background-color: white; */
 }
 .toolbar-pan button{
   /* color: #7e7b7b; */
@@ -265,19 +241,6 @@ input.renamed-input{
   margin-bottom: 1rem;
  }
 
-/* .se-resizing-bar{
-  display: none !important;
-} */
-
-
-/* .sun-editor .se-menu-list, .sun-editor .se-menu-list li{
-  float: right !important;
-} */
-
-/* .sun-editor-editable blockquote{
-  border-width: 0 5px 0 0;
-  padding: 0 20px 0 5px;
-} */
 
 .sun-editor .se-svg:hover, .sun-editor button:hover>svg{
   color: white;
@@ -288,19 +251,13 @@ input.renamed-input{
   margin: 10px;
 }
 
-/* 
-.sun-editor .se-btn-select .txt{
-  text-align: right;
-} */
-
-.sun-editor .se-btn-select.se-btn-tool-format {
-  width: 130px;
+.sun-editor .se-btn-select.se-btn-tool-format:hover {
+  color: white;
 }
 
 .se-btn-list[data-value="h6"]{
 display: none;
 }
-
 
 .se-btn:enabled:hover, .sun-editor .se-btn:enabled:hover {
   background-color:var(--primary);
@@ -319,4 +276,37 @@ display: none;
 .sun-editor .se-list-inner .se-list-basic li button.active:hover {
   background-color:var(--primary);
   border-color:var(--primary);
+}
+
+
+.sun-editor .se-btn-module-border{
+  border: none;
+}
+
+
+.sun-editor-editable[contenteditable=true] .se-component {
+  outline: none;
+}
+
+.se-btn-module.se-btn-module-border:last-child{
+  float: left;
+  margin-left: 15px;
+}
+
+
+.se-btn.delete_note{
+  background-color:#dc3545; 
+  color: white;
+  border: 1px solid transparent;
+  border-color: #dc3545;
+}
+
+se-btn.delete_note:hover{
+  background-color: #bb2d3b;
+  border-color: #b02a37;
+}
+
+se-btn.delete_note:focus{
+  box-shadow: 0 0 0 0.1rem rgba(225,83,97,.5);
+  outline: 0;
 }

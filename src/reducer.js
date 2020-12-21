@@ -1,5 +1,6 @@
 
 export let initialState = {};
+
 // localStorage.clear()
 
 
@@ -48,8 +49,6 @@ const saveNote = (state) => {
         state.tempNote = "";
 
         localStorage.setItem('initialState', JSON.stringify(state))
-
-        console.log(state.folders);
       
         return state
 }
@@ -69,8 +68,6 @@ const reducer = (state, action) => {
 
         if (!notes.length) {
 
-          //  console.log("imposoble to remove fitst note");
-
            if (newState.folders.length > 1){
 
               const folders = newState.folders.filter(f=> f.id !== state.currentFolder.id)
@@ -86,6 +83,16 @@ const reducer = (state, action) => {
               return newState
 
            }
+
+           newState.currentNote.id = generateId();
+
+           newState.currentNote.title = "ملاحظة جديدة"
+           
+           newState.currentNote.content = `<div></div>`
+          
+           newState.tempNote = ""
+
+           localStorage.setItem('initialState', JSON.stringify(newState))
 
            return newState
         }
@@ -132,20 +139,19 @@ const reducer = (state, action) => {
       case "ADD_FOLDER": 
         { 
 
-          const newState = {...state}
+          const newState = saveNote({...state})
 
           const currentFolder = {
             id: generateId(),
-            name: "مجلد جديد",
-            notes: [{
-              id: generateId(),
-              title: "ملاحظة جديدة", 
-              content:"..."
-            }]
-          };
 
+            name: "مجلد جديد",
+
+            notes: [{ id: generateId(), title: "ملاحظة جديدة", content:""}]
+          };
         
           newState.folders.push(currentFolder)
+
+          newState.currentFolder = currentFolder;
 
           newState.currentNote = currentFolder.notes[0]
 
@@ -155,17 +161,14 @@ const reducer = (state, action) => {
         }
       case "ADD_NOTE":
         {
-          const currentNote = {
-            id: generateId(),
-            title: "ملاحظة جديدة", 
-            content:""
-          };
 
-          let newState = {...state}
+          const newState = saveNote({...state})
+
+          const currentNote = {id: generateId(), title: "ملاحظة جديدة", content:""};
 
           newState.currentFolder.notes.push(currentNote);
 
-          newState = {...state, currentNote}
+          newState.currentNote = currentNote;
 
           localStorage.setItem('initialState', JSON.stringify(newState))
 
@@ -206,6 +209,7 @@ const reducer = (state, action) => {
         }
 
       default:
+
         return state;
     }
 
