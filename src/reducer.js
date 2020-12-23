@@ -149,7 +149,7 @@ const reducer = (state, action) => {
             notes: [{ id: generateId(), title: "ملاحظة جديدة", content:""}]
           };
         
-          newState.folders.push(currentFolder)
+          newState.folders.unshift(currentFolder)
 
           newState.currentFolder = currentFolder;
 
@@ -166,7 +166,7 @@ const reducer = (state, action) => {
 
           const currentNote = {id: generateId(), title: "ملاحظة جديدة", content:""};
 
-          newState.currentFolder.notes.push(currentNote);
+          newState.currentFolder.notes.unshift(currentNote);
 
           newState.currentNote = currentNote;
 

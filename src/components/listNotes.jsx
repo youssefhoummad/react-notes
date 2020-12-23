@@ -1,10 +1,11 @@
 import React from 'react';
-import OneNote from './oneNote'
+import { motion} from 'framer-motion'
 import { useStateValue } from '../stateProvider';
+
+import OneNote from './oneNote'
 
 function ListNotes(){    
     const [{currentFolder, menuCollapsed}, dispatch] = useStateValue();
-
 
     const iconDirection = () => {
         if (menuCollapsed){
@@ -33,7 +34,7 @@ function ListNotes(){
     
 
     return (
-        <div className="notes-pan">
+        <div  className="notes-pan">
             <div className="title">
                 <span onClick={handleCollapseFoldersPan} className="new-item icon">
                     <i className={iconDirection()}></i>
@@ -43,14 +44,36 @@ function ListNotes(){
                     <i className="fa fa-plus-circle"></i>
                 </span>
                 </div>
-            {currentFolder.notes.map(note=>(
-                <OneNote 
-                    key={note.id} 
-                    note={note}
-                 />
-            ))}
+    
+                    <motion.ul layout
+                        variants={container} 
+                        initial="before"
+                        animate="after"
+
+                    >
+                    {currentFolder.notes.map(note=>(
+                        <OneNote 
+                            key={note.id} 
+                            note={note}
+                        />
+                    ))}
+                    </motion.ul>
+                
         </div>
     );
+}
+
+// for animation
+const container = {
+    before: { opacity: 1, scale: 0 },
+    after: {
+      opacity: 1,
+      scale: 1,
+      transition: {
+        delayChildren: 0.3,
+        staggerChildren: 0.2
+      }
+    }
 }
 
 export default ListNotes;

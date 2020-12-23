@@ -1,5 +1,7 @@
 import React from 'react';
 import EasyEdit, { Types } from "react-easy-edit";
+import {motion} from 'framer-motion';
+
 import { useStateValue } from '../stateProvider';
 
 function OneNote ({note}){
@@ -28,8 +30,10 @@ function OneNote ({note}){
           });
     }
 
+
     return (
-        <div 
+        <motion.li
+        variants={item}
         className={noteStyle()} 
         onClick={handleSelectNote}
         >
@@ -44,12 +48,18 @@ function OneNote ({note}){
                     placeholder={"اسم الملاحظة"}
                 />
             </div>
-            {/* <div className="note-snippet">
-                <p>{note.content.split(" ").slice(0, 4).join(" ") + "..."}</p>
-            </div> */}
-
-        </div>
+        </motion.li>
     );
+}
+
+
+  // for animation
+const item = {
+    before: { y: -20, opacity: 0 },
+    after: {
+      y: 0,
+      opacity: 1
+    }
 }
 
 export default OneNote;

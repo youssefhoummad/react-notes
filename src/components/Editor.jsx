@@ -84,7 +84,7 @@ const Editor = () => {
   );
 };
 
-
+// editor traduction
 const ar = {
 
   toolbar: {
